@@ -33,8 +33,16 @@
   - I wrote a custom hook to handle the game logic.
 
 ### Components
+
   - App handles fetching the word and checking the date.
   - Wordle adds an event listener for the keyboard, initializes the game by passing the solution to the custom hook, renders the Board, Keyboard and Modal.
   - Board renders each row.
   - Keyboard renders the keyboard to keep track of letters used.
   - Modal pop ups at the end of a game wether you win or loose.
+
+### Animation
+
+  - Flip: flips the tiles when a word is submitted.
+  - Bounce: bounces the tile when typing a letter.
+  - Shake: shakes tiles when a word submitte fails (word too short or repeated).
+

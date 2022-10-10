@@ -159,6 +159,13 @@ h1 {
   transition: all 0.3s ease-in;
 }
 
+.shake-row {
+  animation: shake 0.82s cubic-bezier(.36, .7, .19, .97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 @keyframes flip {
   0% {
     transform: rotateX(0);
@@ -195,13 +202,6 @@ h1 {
     transform: scale(1);
     border-color: #787C7E;
   }
-}
-
-.shake-row {
-  animation: shake 0.82s cubic-bezier(.36, .7, .19, .97) both;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  perspective: 1000px;
 }
 
 @keyframes shake {
