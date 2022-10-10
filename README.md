@@ -4,7 +4,7 @@
 
 [worlde]: http://www.victorguillen.io/Wordle/
 
-<img src="assets/wordle.png" width="200" height="400">
+<img src="src/assets/wordle.png" width="200" height="400">
 
 ## Game Play
 
