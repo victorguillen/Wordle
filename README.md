@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# Wordle
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Wordle Live][worlde]
 
-## Available Scripts
+[worlde]: http://www.victorguillen.io/Wordle/
 
-In the project directory, you can run:
+<img src="assets/wordle.png" width="200" height="400">
 
-### `npm start`
+## Game Play
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  - You get 6 tries to solve the game.
+  - You can only play once a day.
+  - Words cannot be repeated.
+  - Word has to be at least 5 characters long.
+  - A green colored tile indicates letter is in the right position, a yellow tile indicates a letter belonging to the word but in the wrong positon.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Controls
 
-### `npm test`
+  - You can use the keyboard to type and submit with the "enter" key.
+  - You can use the mouse to click on the keyboard to select a letter.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Code
 
-### `npm run build`
+### Persisting the game & daily use
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - The game is persisted using local storage.
+  - The game checks for todays date, allowing the game to be played once a day.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  Note: You can clear local storage through the console on the browser to play again. You can also look up the answer through local storage or checking the network tab.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Game logic
 
-### `npm run eject`
+  - I wrote a custom hook to handle the game logic.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Components
+  - App handles fetching the word and checking the date.
+  - Wordle adds an event listener for the keyboard, initializes the game by passing the solution to the custom hook, renders the Board, Keyboard and Modal.
+  - Board renders each row.
+  - Keyboard renders the keyboard to keep track of letters used.
+  - Modal pop ups at the end of a game wether you win or loose.
