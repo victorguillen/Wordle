@@ -9,10 +9,10 @@ const App = () => {
   })
 
   useEffect(() => {
-    localStorage.setItem('solution', solution);
+    localStorage.setItem('solution', solution)
 
     const saved = localStorage.getItem('date')
-    const savedDate = saved ? JSON.parse(saved) : null;
+    const savedDate = saved ? JSON.parse(saved) : null
     const currentDate = new Date()
     
     if (savedDate !== currentDate.getUTCDay()) {
@@ -26,9 +26,9 @@ const App = () => {
               return prev
             } else {
               const newDate = new Date()
-              const date = JSON.stringify(newDate.getUTCDay());
+              const date = JSON.stringify(newDate.getUTCDay())
               localStorage.setItem('date', date);
-              localStorage.setItem('solution', word.Response);
+              localStorage.setItem('solution', word.Response)
               return word.Response
             }
           })
@@ -40,7 +40,7 @@ const App = () => {
     <div className="App">
       <Wordle solution={solution} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

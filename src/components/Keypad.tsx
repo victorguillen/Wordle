@@ -1,12 +1,12 @@
 import React from 'react'
 import { KEYBOARD_LETTERS } from '../utils'
 import { Keys } from '../types'
-import { MdOutlineBackspace } from 'react-icons/md';
-import { AiOutlineEnter } from 'react-icons/ai';
+import { MdOutlineBackspace } from 'react-icons/md'
+import { AiOutlineEnter } from 'react-icons/ai'
 
 interface Props {
   usedKeys: Keys,
-  handleOnChange: ({ key }: { key: any; }) => void
+  handleOnChange: ({ key }: { key: any }) => void
 }
 
 const Keypad: React.FC<Props> = ({ usedKeys, handleOnChange }) => {
@@ -20,12 +20,10 @@ const Keypad: React.FC<Props> = ({ usedKeys, handleOnChange }) => {
     return letter
   }
 
-  const getClassName = (letter: string, color: string) => {
-    if (letter === 'Backspace' || letter === 'Enter') {
-      return 'large'
-    }
-    return color
-  }
+  const getClassName = (letter: string, color: string) =>
+    (letter === 'Backspace' || letter === 'Enter')
+      ? 'large'
+      : color
   
   return (
     <div className='keypad'>

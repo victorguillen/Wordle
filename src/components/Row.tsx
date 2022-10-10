@@ -6,28 +6,24 @@ interface Props {
   isCurrent?: boolean
 }
 
-const Row: React.FC<Props> = ({ guess, isCurrent }) => {
-
-  if (guess) {
-    return (
-      <div className={`row ${isCurrent ? 'current' : 'past'}`}>
-        {guess.map((letter, i) => (
-          <div key={i} className={letter.color}>{letter.key}</div>
-        ))}
-        {[...Array(5 - guess.length)].map((_, i) => <div key={i}></div>)}
-      </div>
-    )
-  }
-
-  return (
-    <div className='row'>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  )
-}
+const Row: React.FC<Props> = ({ guess, isCurrent }) =>
+  guess
+    ? (
+        <div className={`row ${isCurrent ? 'current' : 'past'}`}>
+          {guess.map((letter, i) => (
+            <div key={i} className={letter.color}>{letter.key}</div>
+          ))}
+          {[...Array(5 - guess.length)].map((_, i) => <div key={i}></div>)}
+        </div>
+      )
+    : (
+        <div className='row'>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      )
 
 export default Row
