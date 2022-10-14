@@ -4,5 +4,8 @@ export interface Word {
 }
 
 export interface Keys {
-  [key: string]: string,
+  [key: string]: {
+    color: string,
+    index: number
+  },
 }
