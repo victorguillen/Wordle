@@ -5,7 +5,7 @@ interface Props {
   solution: string
 }
 
-const Modal: React.FC<Props> = ({ isCorrect, solution }) => {
+const EndGameContent: React.FC<Props> = ({ isCorrect, solution }) => {
   const title = isCorrect ? `You won!` : 'You lost!'
   const solutionClassName = isCorrect ? `won` : 'lost'
   return (
@@ -19,4 +19,4 @@ const Modal: React.FC<Props> = ({ isCorrect, solution }) => {
   )
 }
 
-export default Modal
+export default EndGameContent
