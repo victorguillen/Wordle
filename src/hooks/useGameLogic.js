@@ -69,26 +69,19 @@ const useGameLogic = (solution) => {
     })
   }
 
-  const checkGreen = () => {
+
+  const checkHardMode = () => {
     const newWord = formatCurrentGuess()
 
-    return newWord.every((letter, i) => {
-      if (usedKeys[letter.key]?.color === 'green' && usedKeys[letter.key]?.index !== i) {
-        return false
-      }
-      return true
-    })
-  }
-
-  const checkYellow = () => {
-    const newWord = formatCurrentGuess()
-
-    return newWord.every((letter, i) => {
-      if (usedKeys[letter.key]?.color === 'yellow' && usedKeys[letter.key]?.index === i) {
-        return false
-      }
-      return true
-    })
+    return newWord.some((letter, i) => (
+      (
+        usedKeys[letter.key]?.color === 'yellow'
+        && usedKeys[letter.key]?.index === i
+      ) || (
+        usedKeys[letter.key]?.color === 'green'
+        && usedKeys[letter.key]?.index !== i
+      )
+    ))
   }
 
   const formatCurrentGuess = () => {
@@ -140,7 +133,7 @@ const useGameLogic = (solution) => {
   const handleOnChange = ({ key }) => {
     switch (true) {
       case key === 'Enter' && !isCorrect:
-        if (turn > 5 || history.includes(currentGuess) || currentGuess.length !== 5 || !checkGreen() || !checkYellow()) {
+        if (turn > 5 || history.includes(currentGuess) || currentGuess.length !== 5 || checkHardMode()) {
           shakeRow()
           break
         }
