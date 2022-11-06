@@ -28,7 +28,7 @@ const Keypad: React.FC<Props> = ({ usedKeys, handleOnChange }) => {
   return (
     <div className='keypad'>
       {KEYBOARD_LETTERS.map((letter) => {
-        const color = usedKeys[letter.key as keyof Keys]
+        const color = usedKeys[letter.key as keyof Keys]?.color
         return (
           <button
             key={letter.key}
