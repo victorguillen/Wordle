@@ -1,4 +1,5 @@
 import React from 'react'
+import Title from './Title'
 
 interface Props {
   isCorrect: boolean,
@@ -11,7 +12,7 @@ const EndGameContent: React.FC<Props> = ({ isCorrect, solution }) => {
   return (
     <div className='modal'>
       <div>
-        <h1>{title}</h1>
+        <Title title={title} />
         <p className={solutionClassName}>{solution}</p>
         <p className='try-again'>Try again tomorrow.</p>
       </div>
