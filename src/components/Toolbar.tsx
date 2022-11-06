@@ -5,6 +5,7 @@ import { GrCircleQuestion } from "react-icons/gr"
 import { BsBarChartLine } from "react-icons/bs"
 import { FaCog } from "react-icons/fa"
 import Modal from "./Modals/Modal"
+import ToggleSwitch from "./Toggle"
 
 const Toolbar =  () => {
   const [openInstructionsModal, setOpenInstructionsModal] = useState(false)
@@ -40,7 +41,7 @@ const Toolbar =  () => {
       </header>
       <Modal open={openInstructionsModal} onClose={() => setOpenInstructionsModal(false)}>instructions</Modal>
       <Modal open={openStatisticsModal} onClose={() => setOpenStatisticsModal(false)}>statistics</Modal>
-      <Modal open={openSettingsModal} onClose={() => setOpenSettingsModal(false)}>settings</Modal>
+      <Modal open={openSettingsModal} onClose={() => setOpenSettingsModal(false)}><ToggleSwitch label="Hard Mode" /></Modal>
     </>
   )
 }
