@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
 import Wordle from './components/Wordle'
+import { styled } from '@mui/system';
+
+const Layout = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  height: '100vh'
+})
 
 const App = () => {
   const [solution, setSolution] = useState(() => {
@@ -37,9 +46,9 @@ const App = () => {
   }, [setSolution, solution])
 
   return (
-    <div className="App">
+    <Layout>
       <Wordle solution={solution} />
-    </div>
+    </Layout>
   )
 }
 
