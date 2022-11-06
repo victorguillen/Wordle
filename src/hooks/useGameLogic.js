@@ -51,16 +51,16 @@ const useGameLogic = (solution) => {
     setUsedKeys((previousKeys) => {
       let newKeys = { ...previousKeys }
 
-      tempGuesses.forEach((letter) => {
+      tempGuesses.forEach((letter, i) => {
         const currentColor = newKeys[letter.key]
         if (letter.color === 'green') {
-          newKeys[letter.key] = 'green'
+          newKeys[letter.key] = { color: 'green', index: i }
           return
         } else if (letter.color === 'yellow' && currentColor !== 'green') {
-          newKeys[letter.key] = 'yellow'
+          newKeys[letter.key] = { color: 'yellow', index: i }
           return
         } else if (letter.color === 'grey' && currentColor !== 'green' && currentColor !== 'yellow') {
-          newKeys[letter.key] = 'grey'
+          newKeys[letter.key] = { color: 'grey', index: i }
           return
         }
       })
@@ -69,11 +69,26 @@ const useGameLogic = (solution) => {
     })
   }
 
-  const addWord = () => {
+
+  const checkHardMode = () => {
+    const newWord = formatCurrentGuess()
+
+    return newWord.some((letter, i) => (
+      (
+        usedKeys[letter.key]?.color === 'yellow'
+        && usedKeys[letter.key]?.index === i
+      ) || (
+        usedKeys[letter.key]?.color === 'green'
+        && usedKeys[letter.key]?.index !== i
+      )
+    ))
+  }
+
+  const formatCurrentGuess = () => {
     let coloredLetters = []
-    let tempGuesses = [...guesses]
     let newWord = [...currentGuess].map((letter, i) => {
       let word = { key: letter }
+
       if (solution[i] === letter) {
         word['color'] = 'green'
         coloredLetters.push(letter)
@@ -83,12 +98,19 @@ const useGameLogic = (solution) => {
       return word
     })
 
-    newWord.forEach((word) => {
+    newWord.forEach((word, i) => {
       if(!coloredLetters.includes(word.key) && solution.includes(word.key)) {
         word.color = 'yellow'
         coloredLetters.push(word.key)
       }
     })
+
+    return newWord
+  }
+
+  const addWord = () => {
+    let tempGuesses = [...guesses]
+    const newWord = formatCurrentGuess()
 
     tempGuesses[turn] = newWord
 
@@ -111,7 +133,7 @@ const useGameLogic = (solution) => {
   const handleOnChange = ({ key }) => {
     switch (true) {
       case key === 'Enter' && !isCorrect:
-        if (turn > 5 || history.includes(currentGuess) || currentGuess.length !== 5) {
+        if (turn > 5 || history.includes(currentGuess) || currentGuess.length !== 5 || checkHardMode()) {
           shakeRow()
           break
         }
