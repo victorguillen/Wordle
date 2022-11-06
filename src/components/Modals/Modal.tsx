@@ -12,7 +12,7 @@ const Modal: React.FC<Props> = ({ open, onClose, children }) => {
     return (
       <div className='modal'>
         <div>
-          <button className='icons' onClick={onClose}>
+          <button className='icons modal-close' onClick={onClose}>
             <AiOutlineClose/>
           </button>
           {children}
