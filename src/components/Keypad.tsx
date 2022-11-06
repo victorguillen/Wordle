@@ -30,13 +30,13 @@ const Keypad: React.FC<Props> = ({ usedKeys, handleOnChange }) => {
       {KEYBOARD_LETTERS.map((letter) => {
         const color = usedKeys[letter.key as keyof Keys]?.color
         return (
-          <div
+          <button
             key={letter.key}
             className={getClassName(letter.key, color)}
             onClick={() => handleOnChange({ key: letter.key })}
           >
             {getKey(letter.key)}
-          </div>
+          </button>
         )
       })}
     </div>

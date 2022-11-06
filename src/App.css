@@ -110,7 +110,7 @@ body {
   margin: 20px auto;
 }
 
-.keypad > div {
+.keypad > button {
   margin: 3px;
   width: 43px;
   height: 58px;
@@ -122,25 +122,30 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
+  border-style: none;
 }
 
-.keypad > div.large {
+.keypad > button:focus {
+  outline: 1px solid #2670DC;
+}
+
+.keypad > button.large {
   width: 60px;
 }
 
-.keypad > div.green {
+.keypad > button.green {
   background: #6AA964;
   color: #fff;
   transition: all 0.3s ease-in;
 }
 
-.keypad > div.yellow {
+.keypad > button.yellow {
   background: #C9B458;
   color: #fff;
   transition: all 0.3s ease-in;
 }
 
-.keypad > div.grey {
+.keypad > button.grey {
   background: #787C7E;
   color: #fff;
   transition: all 0.3s ease-in;
