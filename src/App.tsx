@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import Wordle from './components/Wordle'
 import { styled } from '@mui/system';
+import { CONFIG } from './config.js'
 
 const Layout = styled('div')({
   display: 'flex',
@@ -27,9 +28,17 @@ const App = () => {
     if (savedDate !== currentDate.getUTCDay()) {
       window.localStorage.clear()
 
-      fetch('https://thatwordleapi.azurewebsites.net/get/')
+      fetch('https://wordsapiv1.p.rapidapi.com/words/?random=true&lettersMin=5&lettersMax=5', 
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key": CONFIG.apiKey,
+          }
+        }
+      )
         .then((res) => res.json())
-        .then((word) => {
+        .then((res) => {
           setSolution((prev: string) => {
             if (prev) {
               return prev
@@ -37,8 +46,8 @@ const App = () => {
               const newDate = new Date()
               const date = JSON.stringify(newDate.getUTCDay())
               localStorage.setItem('date', date);
-              localStorage.setItem('solution', word.Response)
-              return word.Response
+              localStorage.setItem('solution', res.word)
+              return res.word
             }
           })
         })
