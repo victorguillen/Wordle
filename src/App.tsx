@@ -21,10 +21,11 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem('solution', solution)
 
-    const saved = localStorage.getItem('date')
-    const savedDate = saved ? JSON.parse(saved) : null
-    const currentDate = new Date()
-    if (savedDate !== currentDate.getUTCDay()) {
+    // const saved = localStorage.getItem('date')
+    // const savedDate = saved ? JSON.parse(saved) : null
+    // const currentDate = new Date()
+    // if (savedDate !== currentDate.getUTCDay()) {
+      if (!solution) {
       window.localStorage.clear()
       
       fetch('https://wordsapiv1.p.rapidapi.com/words/?random=true&lettersMin=5&lettersMax=5', 
@@ -40,7 +41,6 @@ const App = () => {
       .then((res) => {
         setSolution((prev: string) => {
           if (prev) {
-
               return prev
             } else {
               // const newDate = new Date()

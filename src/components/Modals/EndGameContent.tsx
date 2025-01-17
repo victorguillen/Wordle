@@ -13,7 +13,6 @@ const EndGameContent: React.FC<Props> = ({ isCorrect, solution }) => {
     <div>
       <Title title={title} />
       <p className={solutionClassName}>{solution}</p>
-      <p className='try-again'>Try again tomorrow.</p>
     </div>
   )
 }
