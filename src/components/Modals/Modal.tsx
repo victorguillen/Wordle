@@ -8,12 +8,13 @@ interface Props {
 }
 
 const Modal: React.FC<Props> = ({ open, onClose, children }) => {
+  
   if (open) {
     return (
       <div className='modal'>
-        <div>
+        <div className='modal-content'>
           <button className='icons modal-close' onClick={onClose}>
-            <AiOutlineClose/>
+            <AiOutlineClose size={22}/>
           </button>
           {children}
         </div>

@@ -7,17 +7,19 @@ import Toolbar from './Toolbar'
 import EndGameContent from './Modals/EndGameContent'
 
 interface Props {
-  solution: string
+  solution: string,
+  handleReset: () => void
 }
 
-const Wordle: React.FC<Props> = ({ solution }) => {
+const Wordle: React.FC<Props> = ({ solution, handleReset }) => {
   const [showModal, setShowModal] = useState(false)
-  const { turn, currentGuess, guesses, usedKeys, isCorrect, handleOnChange } = useGameLogic(solution)
+  const [isHardMode, setIsHardMode] = useState(false)
+  const { turn, currentGuess, guesses, usedKeys, isCorrect, handleOnChange } = useGameLogic(solution, isHardMode)
 
   useEffect(() => {
     window.addEventListener('keyup', handleOnChange)
 
-    if (isCorrect || turn > 5) {
+    if ((isCorrect || turn > 5) && solution) {
       setTimeout(() => {
         setShowModal(true)
       }, 1000)
@@ -25,14 +27,19 @@ const Wordle: React.FC<Props> = ({ solution }) => {
     }
 
     return () => window.removeEventListener('keyup', handleOnChange)
-  }, [handleOnChange, isCorrect, turn])
+  }, [handleOnChange, isCorrect, turn, solution])
+
+  const handleEndGame = () => {
+    setShowModal(false)
+    handleReset()
+  }
 
   return (
     <>
-      <Toolbar/>
+      <Toolbar handleMode={() => setIsHardMode(!isHardMode)}/>
       <Board guesses={guesses} currentGuess={currentGuess} turn={turn} />
       <Keypad usedKeys={usedKeys} handleOnChange={handleOnChange} />
-      <Modal open={showModal} onClose={() => setShowModal(false)}>
+      <Modal open={showModal} onClose={handleEndGame}>
         <EndGameContent isCorrect={isCorrect} solution={solution} />
       </Modal>
     </>

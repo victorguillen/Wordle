@@ -7,7 +7,11 @@ import { FaCog } from "react-icons/fa"
 import Modal from "./Modals/Modal"
 import ToggleSwitch from "./Toggle"
 
-const Toolbar =  () => {
+interface Props {
+  handleMode: () => void
+}
+
+const Toolbar: React.FC<Props> =  ({ handleMode }) => {
   const [openInstructionsModal, setOpenInstructionsModal] = useState(false)
   const [openStatisticsModal, setOpenStatisticsModal] = useState(false)
   const [openSettingsModal, setOpenSettingsModal] = useState(false)
@@ -39,9 +43,9 @@ const Toolbar =  () => {
           </div>
         </div>
       </header>
-      <Modal open={openInstructionsModal} onClose={() => setOpenInstructionsModal(false)}>instructions</Modal>
-      <Modal open={openStatisticsModal} onClose={() => setOpenStatisticsModal(false)}>statistics</Modal>
-      <Modal open={openSettingsModal} onClose={() => setOpenSettingsModal(false)}><ToggleSwitch label="Hard Mode" /></Modal>
+      <Modal open={openInstructionsModal} onClose={() => setOpenInstructionsModal(false)}><h2>Instructions</h2></Modal>
+      <Modal open={openStatisticsModal} onClose={() => setOpenStatisticsModal(false)}><h2>Statistics</h2></Modal>
+      <Modal open={openSettingsModal} onClose={() => setOpenSettingsModal(false)}><ToggleSwitch label="Hard Mode" onClick={handleMode} /></Modal>
     </>
   )
 }

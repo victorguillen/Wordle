@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-const useGameLogic = (solution) => {
+const useGameLogic = (solution, isHardMode) => {
   const [currentGuess, setCurrentGuess] = useState('')
 
   const [turn, setTurn] = useState(() => {
@@ -41,6 +41,14 @@ const useGameLogic = (solution) => {
     localStorage.setItem('usedKeys', JSON.stringify(usedKeys))
   }, [turn, guesses, history, isCorrect, usedKeys])
 
+  useEffect(() => {
+    setTurn(0)
+    setHistory([])
+    setIsCorrect(false)
+    setGuesses([...Array(6)])
+    setUsedKeys({})
+  }, [solution])
+
   const checkForWin = () => {
     if (solution === currentGuess) {
       setIsCorrect(true)
@@ -73,7 +81,7 @@ const useGameLogic = (solution) => {
   const checkHardMode = () => {
     const newWord = formatCurrentGuess()
 
-    return newWord.some((letter, i) => (
+    return isHardMode && newWord.some((letter, i) => (
       (
         usedKeys[letter.key]?.color === 'yellow'
         && usedKeys[letter.key]?.index === i
