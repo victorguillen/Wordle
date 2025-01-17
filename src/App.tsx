@@ -24,10 +24,9 @@ const App = () => {
     const saved = localStorage.getItem('date')
     const savedDate = saved ? JSON.parse(saved) : null
     const currentDate = new Date()
-    
     if (savedDate !== currentDate.getUTCDay()) {
       window.localStorage.clear()
-
+      
       fetch('https://wordsapiv1.p.rapidapi.com/words/?random=true&lettersMin=5&lettersMax=5', 
         {
           method: "GET",
@@ -37,15 +36,16 @@ const App = () => {
           }
         }
       )
-        .then((res) => res.json())
-        .then((res) => {
-          setSolution((prev: string) => {
-            if (prev) {
+      .then((res) => res.json())
+      .then((res) => {
+        setSolution((prev: string) => {
+          if (prev) {
+
               return prev
             } else {
-              const newDate = new Date()
-              const date = JSON.stringify(newDate.getUTCDay())
-              localStorage.setItem('date', date);
+              // const newDate = new Date()
+              // const date = JSON.stringify(newDate.getUTCDay())
+              // localStorage.setItem('date', date);
               localStorage.setItem('solution', res.word)
               return res.word
             }
@@ -54,9 +54,11 @@ const App = () => {
     } 
   }, [setSolution, solution])
 
+  const handleReset = () => setSolution('')
+
   return (
     <Layout>
-      <Wordle solution={solution} />
+      <Wordle solution={solution} handleReset={handleReset} />
     </Layout>
   )
 }
