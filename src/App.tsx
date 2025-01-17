@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import Wordle from './components/Wordle'
 import { styled } from '@mui/system';
-import { CONFIG } from './config.js'
+import CONFIG from './config.js'
 
 const Layout = styled('div')({
   display: 'flex',
