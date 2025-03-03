@@ -2,7 +2,7 @@
 
 [Wordle Live][worlde]
 
-[worlde]: http://www.victorguillen.io/Wordle/
+[worlde]: https://victorguillen.github.io/Wordle/
 
 <img src="src/assets/wordle.png" width="400" height="400">
 
